@@ -10,10 +10,11 @@ public class CreateTable {
         // The full table structure including the missing 'bookmark' column
         String sql = "CREATE TABLE IF NOT EXISTS resources (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "title TEXT," +
                 "subject TEXT," +
+                "title TEXT," +
                 "link TEXT," +
                 "type TEXT," +
+                "difficulty TEXT  "+
                 "bookmark INTEGER DEFAULT 0)"; // Added this line
 
         try (Connection conn = DBConnection.connect();
