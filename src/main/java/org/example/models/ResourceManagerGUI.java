@@ -30,6 +30,7 @@ public class ResourceManagerGUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+
         // ===== HEADER =====
         JPanel header = new JPanel() {
             protected void paintComponent(Graphics g) {
@@ -42,9 +43,26 @@ public class ResourceManagerGUI extends JFrame {
         header.setPreferredSize(new Dimension(100, 65));
         header.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("📚 ResourceNest", SwingConstants.CENTER);
+        ImageIcon logoIcon = new ImageIcon(
+                getClass().getResource("/images/logo.png")
+        );
+
+        Image scaled = logoIcon.getImage().getScaledInstance(
+                60, 60, Image.SCALE_SMOOTH
+        );
+
+        JLabel title = new JLabel(
+                "  ResourceNest",
+                new ImageIcon(scaled),
+                JLabel.CENTER
+        );
+
         title.setForeground(Color.WHITE);
         title.setFont(new Font("Segoe UI", Font.BOLD, 26));
+
+// logo on LEFT of text
+        title.setHorizontalTextPosition(JLabel.RIGHT);
+        title.setIconTextGap(10);
 
         JButton showFormBtn = new JButton("➕ Add");
 
