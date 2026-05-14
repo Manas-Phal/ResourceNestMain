@@ -140,7 +140,8 @@ Include screenshots of:
 
 - Difficulty Graph <img width="940" height="491" alt="image" src="https://github.com/user-attachments/assets/414d0d0d-8c4d-4968-ace7-7a45be03a4d0" />
 
-- Insights Popup <img width="485" height="440" alt="image" src="https://github.com/user-attachments/assets/46ee741d-9b49-4099-b9fc-002aad85316c" />
+- Insights Popup
+  <img width="485" height="440" alt="image" src="https://github.com/user-attachments/assets/46ee741d-9b49-4099-b9fc-002aad85316c" />
 
 
 ---
