@@ -165,12 +165,49 @@ public class ResourceManagerGUI extends JFrame {
         add(side, BorderLayout.WEST);
 
         // ===== TABLE =====
-        model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 7;   // only Bookmark column editable
+            }
+        };
         model.setColumnIdentifiers(new String[]{
                 "ID", "Title", "Subject", "Topic", "Link", "Type", "Difficulty", "Bookmark"
         });
 
         table = new JTable(model);
+        model.addTableModelListener(e -> {
+
+            if (e.getColumn() == 7) {   // Bookmark column
+
+                int row = e.getFirstRow();
+
+                try (Connection c = connect()) {
+
+                    int id = Integer.parseInt(
+                            model.getValueAt(row, 0).toString()
+                    );
+
+                    int bookmark = Integer.parseInt(
+                            model.getValueAt(row, 7).toString()
+                    );
+
+                    PreparedStatement ps = c.prepareStatement(
+                            "UPDATE resources SET bookmark=? WHERE id=?"
+                    );
+
+                    ps.setInt(1, bookmark);
+                    ps.setInt(2, id);
+
+                    ps.executeUpdate();
+
+                    System.out.println("Bookmark updated");
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         table.setRowHeight(28);
 
         table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
